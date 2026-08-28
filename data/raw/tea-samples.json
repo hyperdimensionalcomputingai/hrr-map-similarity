@@ -1,0 +1,22 @@
+[
+  {"sample_id":"T01","name":"Darjeeling First Flush","tea_type":"black","origin":"India","oxidation":"high","roast":"none","aroma_notes":["floral","muscatel","citrus"],"elevation_m":1900},
+  {"sample_id":"T02","name":"Darjeeling Second Flush","tea_type":"black","origin":"India","oxidation":"high","roast":"none","aroma_notes":["muscatel","stone fruit","honey"],"elevation_m":1800},
+  {"sample_id":"T03","name":"Assam Golden Tips","tea_type":"black","origin":"India","oxidation":"high","roast":"light","aroma_notes":["malt","honey","cocoa"],"elevation_m":150},
+  {"sample_id":"T04","name":"Ceylon Uva","tea_type":"black","origin":"Sri Lanka","oxidation":"high","roast":"none","aroma_notes":["citrus","wood","mint"],"elevation_m":1400},
+  {"sample_id":"T05","name":"Keemun Hao Ya","tea_type":"black","origin":"China","oxidation":"high","roast":"light","aroma_notes":["cocoa","orchid","smoke"],"elevation_m":800},
+  {"sample_id":"T06","name":"Sencha","tea_type":"green","origin":"Japan","oxidation":"low","roast":"none","aroma_notes":["grass","seaweed","sweet"],"elevation_m":250},
+  {"sample_id":"T07","name":"Gyokuro","tea_type":"green","origin":"Japan","oxidation":"low","roast":"none","aroma_notes":["umami","seaweed","sweet"],"elevation_m":200},
+  {"sample_id":"T08","name":"Dragon Well","tea_type":"green","origin":"China","oxidation":"low","roast":"light","aroma_notes":["chestnut","grass","orchid"],"elevation_m":300},
+  {"sample_id":"T09","name":"Bi Luo Chun","tea_type":"green","origin":"China","oxidation":"low","roast":"none","aroma_notes":["floral","fruit","grass"],"elevation_m":500},
+  {"sample_id":"T10","name":"Jasmine Green","tea_type":"green","origin":"China","oxidation":"low","roast":"none","aroma_notes":["jasmine","floral","sweet"],"elevation_m":400},
+  {"sample_id":"T11","name":"High Mountain Oolong","tea_type":"oolong","origin":"Taiwan","oxidation":"medium","roast":"light","aroma_notes":["orchid","cream","green"],"elevation_m":1800},
+  {"sample_id":"T12","name":"Dong Ding","tea_type":"oolong","origin":"Taiwan","oxidation":"medium","roast":"medium","aroma_notes":["roasted nuts","honey","orchid"],"elevation_m":800},
+  {"sample_id":"T13","name":"Oriental Beauty","tea_type":"oolong","origin":"Taiwan","oxidation":"high","roast":"light","aroma_notes":["honey","muscatel","floral"],"elevation_m":600},
+  {"sample_id":"T14","name":"Wuyi Rock Tea","tea_type":"oolong","origin":"China","oxidation":"medium","roast":"heavy","aroma_notes":["mineral","roasted nuts","stone fruit"],"elevation_m":500},
+  {"sample_id":"T15","name":"Tieguanyin","tea_type":"oolong","origin":"China","oxidation":"medium","roast":"light","aroma_notes":["orchid","cream","citrus"],"elevation_m":700},
+  {"sample_id":"T16","name":"Silver Needle","tea_type":"white","origin":"China","oxidation":"low","roast":"none","aroma_notes":["melon","hay","floral"],"elevation_m":900},
+  {"sample_id":"T17","name":"White Peony","tea_type":"white","origin":"China","oxidation":"low","roast":"none","aroma_notes":["hay","honey","stone fruit"],"elevation_m":850},
+  {"sample_id":"T18","name":"Moonlight White","tea_type":"white","origin":"China","oxidation":"medium","roast":"none","aroma_notes":["honey","cocoa","dried fruit"],"elevation_m":1500},
+  {"sample_id":"T19","name":"Raw Pu-erh","tea_type":"pu-erh","origin":"China","oxidation":"post-fermented","roast":"none","aroma_notes":["herbal","apricot","mineral"],"elevation_m":1600},
+  {"sample_id":"T20","name":"Ripe Pu-erh","tea_type":"pu-erh","origin":"China","oxidation":"post-fermented","roast":"none","aroma_notes":["earth","wood","cocoa"],"elevation_m":1400}
+]
