@@ -159,7 +159,7 @@ ways: exact source similarity, HRR cosine similarity, and MAP cosine similarity.
 The dashed line in the figure is the ideal `hypervector similarity = source
 similarity` relationship.
 
-![Pairwise source similarities compared with HRR and MAP cosine similarities](artifacts/figures/similarity-comparison.png)
+![Pairwise source similarities compared with HRR and MAP cosine similarities](./img/similarity-comparison.png)
 
 The points fall into vertical bands because source overlap can only change in
 whole terms. At 4,096 dimensions, both point clouds stay close to the ideal
@@ -211,7 +211,7 @@ source-similarity benchmark across **6** dimensions and **5** random seeds. The
 dataset, record order, term vocabulary, field weights, and source baseline stay
 fixed. Only dimension and seed are changed.
 
-![HRR and MAP source-similarity correlation across dimensions and seeds](artifacts/figures/dimension-sweep.png)
+![HRR and MAP source-similarity correlation across dimensions and seeds](./img/dimension-sweep.png)
 
 At each dimension, the script encodes the dataset five times, once per random
 seed. Each faint point is the Pearson correlation between the exact source
