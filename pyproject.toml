@@ -1,0 +1,36 @@
+[project]
+name = "hdc-experiments"
+version = "0.1.0"
+description = "A readable HRR and MAP encoder comparison"
+readme = "README.md"
+authors = [
+    { name = "prrao87", email = "prrao87@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "lancedb>=0.27.0",
+    "matplotlib>=3.10.5",
+    "numpy>=2.3.2",
+    "polars>=1.32.3",
+    "pyarrow>=21.0.0",
+    "torch>=2.8.0",
+    "torch-hd>=5.8.4",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "ruff>=0.12.8",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[tool.ruff]
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
