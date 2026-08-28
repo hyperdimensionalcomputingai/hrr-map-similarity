@@ -183,7 +183,7 @@ similarities sit from their intended values. Both measures tell the same story
 for this run: each algebra closely recovers the source-defined pairwise scores,
 and the observed difference between them is small on these 20 records.
 
-The script also asks LanceDB for the top four neighbors of six fixed queries.
+The script also queries the LanceDB storage layer for the top four neighbors of six fixed queries.
 Raw overlap requires HRR and MAP to return the same record IDs. Tie-aware
 overlap accepts a different ID when both candidates have equal source
 similarity to the query.
@@ -201,15 +201,24 @@ source-similarity tier defined by this dataset.
 
 ### 4. Sweep dimensions
 
+> [!NOTE]
+> Do you really need 10,000 dimensions in your hypervectors? For any dataset, it's
+> worth running a dimensionality sweep experiment like the one shown below to
+> understand the impact of a) dimensionality and b) random seed on results.
+
 [`04_dimension_sweep.py`](src/04_dimension_sweep.py) repeats the pairwise
-source-similarity benchmark across six dimensions and five random seeds. The
+source-similarity benchmark across **6** dimensions and **5** random seeds. The
 dataset, record order, term vocabulary, field weights, and source baseline stay
-fixed. Only dimension and seed change.
+fixed. Only dimension and seed are changed.
 
 ![HRR and MAP source-similarity correlation across dimensions and seeds](artifacts/figures/dimension-sweep.png)
 
-The faint points are individual seeds. Each solid point is the mean, and the
-error bar shows one sample standard deviation. The vertical axis is deliberately
+At each dimension, the script encodes the dataset five times, once per random
+seed. Each faint point is the Pearson correlation between the exact source
+similarities and either the HRR or MAP cosine similarities for every record pair
+in one seeded run. Each solid point, also reported in the table below, is the
+arithmetic mean of those five correlations. The error bar extends one sample
+standard deviation above and below that mean. The vertical axis is deliberately
 zoomed, so the visible gap between curves is much smaller than it first appears.
 
 | Dimensions | HRR vs source | MAP vs source |
@@ -221,10 +230,10 @@ zoomed, so the visible gap between curves is much smaller than it first appears.
 | 8,192 | 0.9981 | 0.9987 |
 | 10,000 | 0.9981 | 0.9988 |
 
-The largest gains come before 2,048 dimensions. Improvement continues after
+The largest gains come as hypervectors grow to 2,048 dimensions. Improvement continues after
 that point, but the curve is already flattening and variation across seeds is
 small. We therefore treat 2,048 dimensions as the empirical knee for this
-workload and 4,096 as a conservative teaching default. The recommendation is a
+workload and 4,096 as a conservative default. The recommendation is a
 property of this dataset and field mapping, not a general capacity rule for HRR
 or MAP.
 
@@ -242,9 +251,7 @@ requirements that can make the choice of algebra matter. The fixed
 record-to-hypervector pipeline gives us a clean place to add such tests later
 without also changing what the records mean.
 
-## Generated outputs
-
-Running all four scripts recreates:
+Running all four scripts creates the following artifacts that contain the raw outputs:
 
 ```text
 artifacts/
@@ -258,9 +265,6 @@ artifacts/
     ├── similarity-comparison.png
     └── dimension-sweep.png
 ```
-
-Generated artifacts, LanceDB tables, Python caches, and `dist/` are ignored by
-Git. The raw JSON remains visible and versionable.
 
 ## Try another dataset
 
@@ -286,8 +290,7 @@ whether the dimension recommendation remains explicitly workload-specific.
 [`AGENTS.md`](AGENTS.md) documents the repository structure and development
 commands.
 
-The project uses NumPy, PyArrow, Polars, and TorchHD. TorchHD brings SciPy into
-the locked environment as a transitive dependency.
+The project uses NumPy, PyArrow, Polars, and TorchHD.
 
 [^applications]: HRR was introduced as a real-valued associative-memory scheme
     for variable bindings, sequences, and frame-like structures in
