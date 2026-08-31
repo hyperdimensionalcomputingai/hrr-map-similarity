@@ -53,19 +53,47 @@ def plot_similarity(
     source = pairwise["source_similarity"].to_numpy()
     hrr = pairwise["hrr_cosine"].to_numpy()
     map_vectors = pairwise["map_cosine"].to_numpy()
+    source_levels = np.unique(source)
+    marker_offset = 0.005
 
     with plt.rc_context(STYLE):
         figure, axis = plt.subplots(figsize=(8.8, 5.6), constrained_layout=True)
-        axis.scatter(source, hrr, s=30, alpha=0.55, color=BLUE, label="HRR")
+        axis.scatter(source, hrr, s=28, alpha=0.18, color=BLUE, marker="o")
         axis.scatter(
             source,
             map_vectors,
             s=30,
-            alpha=0.55,
+            alpha=0.22,
             color=ORANGE,
             marker="x",
-            label="MAP",
+            linewidths=1.2,
         )
+        for values, color, marker, label, offset in (
+            (hrr, BLUE, "o", "HRR mean ± SD", -marker_offset),
+            (map_vectors, ORANGE, "x", "MAP mean ± SD", marker_offset),
+        ):
+            means = []
+            deviations = []
+            for level in source_levels:
+                band = values[source == level]
+                means.append(float(np.mean(band)))
+                deviations.append(
+                    float(np.std(band, ddof=1)) if len(band) > 1 else 0.0
+                )
+            axis.errorbar(
+                source_levels + offset,
+                means,
+                yerr=deviations,
+                color=color,
+                label=label,
+                marker=marker,
+                markersize=9,
+                markeredgewidth=2,
+                linestyle="none",
+                elinewidth=1.8,
+                capsize=4,
+                zorder=3,
+            )
         score_min = float(min(source.min(), hrr.min(), map_vectors.min()))
         score_max = float(max(source.max(), hrr.max(), map_vectors.max()))
         axis.plot(
@@ -102,15 +130,15 @@ def plot_dimension_sweep(
 ) -> Path:
     """Plot only the two primary source-preservation curves across dimensions."""
     definitions = (
-        ("hrr_vs_source", "HRR vs source", BLUE),
-        ("map_vs_source", "MAP vs source", ORANGE),
+        ("hrr_vs_source", "HRR vs source", BLUE, "o"),
+        ("map_vs_source", "MAP vs source", ORANGE, "x"),
     )
     x_positions = np.arange(len(dimensions), dtype=float)
     panel_values: list[float] = []
 
     with plt.rc_context(STYLE):
         figure, axis = plt.subplots(figsize=(9.4, 5.8), constrained_layout=True)
-        for metric, label, color in definitions:
+        for metric, label, color, marker in definitions:
             means = []
             deviations = []
             for position, dimensions_value in zip(x_positions, dimensions, strict=True):
@@ -130,7 +158,8 @@ def plot_dimension_sweep(
                     s=28,
                     color=color,
                     alpha=0.28,
-                    linewidths=0,
+                    marker=marker,
+                    linewidths=1.1 if marker == "x" else 0,
                 )
             axis.errorbar(
                 x_positions,
@@ -138,8 +167,9 @@ def plot_dimension_sweep(
                 yerr=deviations,
                 color=color,
                 label=label,
-                marker="o",
-                markersize=6,
+                marker=marker,
+                markersize=7,
+                markeredgewidth=1.5,
                 linewidth=2.2,
                 capsize=4,
             )
