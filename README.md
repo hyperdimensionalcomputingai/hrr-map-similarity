@@ -162,10 +162,13 @@ similarity` relationship.
 ![Pairwise source similarities compared with HRR and MAP cosine similarities](./img/similarity-comparison.png)
 
 The points fall into vertical bands because source overlap can only change in
-whole terms. At 4,096 dimensions, both point clouds stay close to the ideal
-line. Small deviations, including slightly negative cosines for some pairs with
-zero shared terms, come from residual interference among the random field-value
-hypervectors sharing a finite number of coordinates.
+whole terms. Faint circles show individual HRR pairs and faint crosses show
+individual MAP pairs. Within each band, the larger symbol shows the mean and the
+error bar shows one sample standard deviation across record pairs. At 4,096
+dimensions, both point clouds stay close to the ideal line. Small deviations,
+including slightly negative cosines for some pairs with zero shared terms, come
+from residual interference among the random field-value hypervectors sharing a
+finite number of coordinates.
 
 The current run uses seed 2,026 and produces:
 
@@ -214,12 +217,13 @@ fixed. Only dimension and seed are changed.
 ![HRR and MAP source-similarity correlation across dimensions and seeds](./img/dimension-sweep.png)
 
 At each dimension, the script encodes the dataset five times, once per random
-seed. Each faint point is the Pearson correlation between the exact source
-similarities and either the HRR or MAP cosine similarities for every record pair
-in one seeded run. Each solid point, also reported in the table below, is the
-arithmetic mean of those five correlations. The error bar extends one sample
-standard deviation above and below that mean. The vertical axis is deliberately
-zoomed, so the visible gap between curves is much smaller than it first appears.
+seed. Circles identify HRR and crosses identify MAP. Each faint symbol is the
+Pearson correlation between the exact source similarities and one algebra's
+cosine similarities for every record pair in one seeded run. Each larger symbol,
+also reported in the table below, is the arithmetic mean of those five
+correlations. The error bar extends one sample standard deviation above and below
+that mean. The vertical axis is deliberately zoomed, so the visible gap between
+curves is much smaller than it first appears.
 
 | Dimensions | HRR vs source | MAP vs source |
 | ---: | ---: | ---: |
